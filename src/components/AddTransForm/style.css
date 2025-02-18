@@ -1,0 +1,76 @@
+.add-trans-form, .add-trans-input-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.add-trans-form{
+    max-width: 550px;
+    margin: auto;
+    gap: 20px;
+    box-shadow: 0 0 3px 0 #ccc;
+    padding: 30px 20px ;
+    border-radius: 8px;
+}
+.add-trans-input-box{
+    flex-direction: row;
+    justify-content: space-between;
+}
+.add-trans-input-box label{
+    width: max-content;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+}
+.add-trans-input, .add-cat-select, .add-type-select{
+    width: 100%;
+    max-width: 300px;
+    border: none;
+    border-bottom: 1px solid black;
+    /* outline: 1px solid darkgray; */
+    outline: none;
+    background-color: white;
+    border-radius: 2px;
+    padding: 10px 8px;
+    transition: all 0.2s 0s ease-out;
+}
+.add-trans-input:focus, .add-cat-select:focus, .add-type-select:focus{
+    outline: 1px solid darkgray;
+    outline: none;
+    box-shadow: 0 0px 3px 0px gray;
+}
+.add-trans-input:hover, .add-cat-select:hover, .add-type-select:hover{
+    box-shadow: 0 2px 5px -2px gray;
+}
+.add-trans-submit-btn{
+    border: none;
+    border-radius: 5px;
+    padding: 8px 30px;
+    background-color: steelblue;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s 0s ease-in-out;
+}
+.add-trans-submit-btn:hover,
+.add-trans-submit-btn:focus{
+    box-shadow: 0 0 5px 0 steelblue;
+}
+
+@media screen and (max-width:567px) {
+    .add-trans-input-box{
+        flex-direction: column;
+        padding: 0 10px;
+    }
+    .add-trans-input-box label{
+        width: 100%;
+        text-align: left;
+    }
+    .add-trans-input, .add-cat-select, .add-type-select{
+        max-width: 100%;
+    }
+}

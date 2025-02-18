@@ -1,0 +1,264 @@
+.home-container{
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.main-container{
+    width: 100%;
+    min-height: calc(100dvh - 80px);
+}
+.greeting-box{
+    width: 100%;
+    height: 300px;
+    background: url('https://img.freepik.com/free-psd/business-sales-blank-banner-background_23-2151485297.jpg?t=st=1739711576~exp=1739715176~hmac=2bb918e7e59c51bf1356c720e321cf96b1dbb485073deb796b83a6c45222daaa&w=1060');
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: -80px;
+    text-shadow: 1px 1px 5px white;
+}
+.greeting-head{
+    width: 100%;
+    font-size: 32px;
+    font-weight: 600;
+    color: black;
+    font-family: "Sansita Swashed", cursive, serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    text-align: center;
+    margin-bottom: 0;
+}
+.greeting-para{
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    max-width: 360px;
+    text-shadow: 0 0 5px blanchedalmond;
+}
+.balance-section{
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    margin-top: -60px;
+}
+.balance-card{
+    width: 100%;
+    min-width: 180px;
+    max-width: 300px;
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-basis: 200px;
+    /* border: 1px solid black; */
+    border-radius: 8px;
+    background-color: lightcyan;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 30px 15px;
+    box-shadow: 0 0 5px 1px white;
+    transition: all 0.3s 0s ease-in-out;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: onLoadCardEffect 1s ease-in-out 0s 1 forwards;
+    animation-fill-mode: both;
+}
+@keyframes onLoadCardEffec {
+    0%{ transform: translateY(50px); opacity: 0;}
+    100%{ transform: initial; opacity: 1;}
+}
+.card-income{
+    background-color: lavender;
+    animation: onLoadCardSide 2s ease-in-out 0s 1 forwards;
+    animation-fill-mode: both;
+}
+@keyframes onLoadCardSide {
+    0%{ transform: translateX(100px); opacity: 0;}
+    40%{ transform: translateX(100px); opacity: 0;}
+    100%{ transform: translateX(0px); opacity: 1;}
+}
+.card-income:hover{
+    box-shadow: 0 0 8px 2px lavender;
+    transform: scale(1.01) translateY(-5px);
+}
+.card-balance{
+    background-color: beige;
+    /* transform: scale(1.1); */
+    animation: onLoadCardMid 1s ease-in-out 0s 1 forwards;
+    animation-fill-mode: both;
+    z-index: 5;
+}
+@keyframes onLoadCardMid {
+    0%{ transform: translateY(50px); opacity: 0;}
+    100%{ transform: translateY(0) scale(1.1); opacity: 1;}
+}
+.card-balance:hover{
+    box-shadow: 0 0 8px 2px beige;
+    transform: scale(1.11) translateY(-5px);
+}
+.card-expenses{
+    background-color: bisque;
+    animation: onLoadCardSideReverse 2s ease-in-out 0s 1 forwards;
+    animation-fill-mode: both;
+}
+@keyframes onLoadCardSideReverse {
+    0%{ transform: translateX(-100px); opacity: 0;}
+    40%{ transform: translateX(-100px); opacity: 0;}
+    100%{ transform: translateX(0px); opacity: 1;}
+}
+.card-expenses:hover{
+    box-shadow: 0 0 8px 2px bisque;
+    transform: scale(1.01) translateY(-5px);
+}
+.balance-card-head{
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: left;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.balance-info-box{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+}
+.balance-card-img{
+    width: 45px;
+}
+.balance-card-info{
+    width: 100%;
+    margin: 0;
+    font-size: 28px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: 600;
+}
+.currency-zeros{
+    font-size: 14px;
+    margin: 0;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .balance-section{
+        flex-direction: column;
+    }
+    .balance-card{
+        max-width: 400px;
+        /* padding: 10px; */
+        flex-basis: unset;
+    }
+    .card-income{
+        order: 1;
+    }.card-balance{
+        order: 0;
+        transform: scale(1);
+        transition: all 0.3s 0s ease-in-out;
+        animation-fill-mode: backwards;
+        z-index: auto;
+        /* max-width: 370px; */
+    }.card-balance:hover{
+        transform: scale(1.01);
+    }.card-expenses{
+        order: 2;
+    }
+    .balance-card-img{
+        width: 60px;
+    }
+    .balance-card-info{
+        font-size: 32px;
+    }
+}
+@media screen and (max-width: 567px) {
+    .greeting-box{
+        background: url('https://img.freepik.com/free-photo/high-view-piggy-bank-notepads_23-2148525283.jpg?t=st=1739729113~exp=1739732713~hmac=c8665704c09e317c0d96fc8509394c2c3d89a5e310093119bf604695d8f8142c&w=740');
+        background-position: center;
+        background-size: cover;
+        height: 250px;
+        margin-top: 0;
+    }
+    .greeting-para{
+        font-size: 14px;
+        max-width: 90%;
+    }
+}
+
+/* FORM SECTION */
+.form-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 20px;
+    justify-content: center;
+    margin: 30px auto;
+}
+.add-trans-head-box{
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-between;
+}
+.add-trans-head{
+    font-size: 20px;
+    font-weight: 500;
+}
+.form-toggle-btn{
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background-color: transparent;
+    transition: all 0.2s 0s ease-in-out;
+}
+.section-intro-para{
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    width: 100%;
+}
+.form-section .section-intro-para{
+    max-width: 600px;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+/* HISTORY SECTION */
+.history-section{
+    width: 100%;
+    margin: auto;
+    margin-bottom: 50px;
+    padding: 10px 20px;
+}
+.history-box{
+    width: 100%;
+    max-width: 800px;
+    /* max-width: 900px; */
+    margin: auto;
+}
+.history-box-head{
+    font-size: 20px;
+    font-weight: 500;
+}

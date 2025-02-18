@@ -1,0 +1,22 @@
+footer{
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+.footer-para{
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: wheat;
+}
+.footer-link{
+    text-decoration: none;
+    color: steelblue;
+    font-size: 14px;
+    font-weight: 500;
+}
