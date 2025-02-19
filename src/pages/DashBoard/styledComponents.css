@@ -8,6 +8,7 @@
 .main-container{
     width: 100%;
     min-height: calc(100dvh - 80px);
+    background-color: white;
 }
 .greeting-box{
     width: 100%;

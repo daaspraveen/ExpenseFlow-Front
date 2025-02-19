@@ -1,4 +1,4 @@
-import {useEffect, useState } from "react";
+import {useEffect, useState, useContext} from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { IoMailOutline } from "react-icons/io5";
@@ -6,10 +6,12 @@ import { TbLockPassword, TbEye, TbEyeClosed } from "react-icons/tb";
 
 import { login } from "../../api/api.js";
 
+import ExpenseFlowContext from "../../contexts/expenseFlowContext.js";
 import "./styledComponents.css";
 
 const Login = () => {
   const navigateTo = useNavigate();
+  const {setUserName}= useContext(ExpenseFlowContext)
 
   const [formData, updateFormData] = useState({
     email: "",
@@ -44,7 +46,9 @@ const Login = () => {
       try {
         const loginResp = await login(formData.email, formData.password);
         // console.log('loginResp', loginResp)
-        const token = loginResp;
+        const token = loginResp.jwt_token;
+        const userName = loginResp.username;
+        setUserName(userName)
 
         if (token) {
           localStorage.setItem("jwt_token", token);
@@ -90,6 +94,7 @@ const Login = () => {
                 placeholder="Enter Email"
                 onChange={handleFormInputs}
                 value={formData.email}
+                disabled={isLoading}
                 required
               />
             </div>
@@ -108,6 +113,7 @@ const Login = () => {
                 placeholder="Enter Password"
                 onChange={handleFormInputs}
                 value={formData.password}
+                disabled={isLoading}
                 required
               />
               <button

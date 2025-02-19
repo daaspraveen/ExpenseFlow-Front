@@ -47,7 +47,7 @@ header{
     border: none;
     outline: none;
     cursor: pointer;
-    background-color: lightcoral;
+    background-color: rgb(215, 125, 125);
     font-size: 14px;
     color: #fff;
     font-weight: 500;
@@ -57,4 +57,5 @@ header{
 }
 .logout-btn:hover{
     box-shadow: 0 0 5px 0 whitesmoke;
+    background-color: lightcoral;
 }

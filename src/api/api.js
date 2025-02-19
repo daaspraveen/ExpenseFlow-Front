@@ -26,8 +26,8 @@ export const login = async (email, password) => {
       email,
       password,
     });
-    // console.log("JWT Token:", response.data.jwt_token);
-    return response.data.jwt_token;
+    // console.log("Resp:", response.data);
+    return response.data;
   } catch (error) {
     console.error("Error during login:", error.response ? error.response.data : error.message);
     throw new Error(error.response ? error.response.data : error.message);

@@ -1,11 +1,17 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import HistoryTable from "../../components/HistoryTable";
 import AddTransForm from "../../components/AddTransForm";
-import { getTransactions, addTransaction, deleteTransaction, updateTransaction } from "../../api/api";
+import {
+  getTransactions,
+  addTransaction,
+  deleteTransaction,
+  updateTransaction,
+} from "../../api/api";
+import ExpenseFlowContext from "../../contexts/expenseFlowContext";
 
 import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { AiFillPlusCircle } from "react-icons/ai";
@@ -13,60 +19,61 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import "./styledComponents.css";
 
 const DashBoard = () => {
-  const [transactions, setTransactions] = useState([])
+  const { userName } = useContext(ExpenseFlowContext);
+  const [transactions, setTransactions] = useState([]);
   const [incomeValue, setIncomeVal] = useState(0);
   const [expensesValue, setExpensesVal] = useState(0);
   const [balanceValue, setBalanceVal] = useState(0);
   // const [loading, setLoading] = useState(true)
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const token = localStorage.getItem("jwt_token")
+  const token = localStorage.getItem("jwt_token");
   // console.log('loading', loading)
 
   const startFetchTrans = useCallback(async () => {
     try {
       const expsData = await getTransactions(token);
-      setTransactions(expsData)
-      calcTotal(expsData)
+      setTransactions(expsData);
+      calcTotal(expsData);
     } catch (e) {
-      console.error('Failed to fetch transactions', e)
-    } 
+      console.error("Failed to fetch transactions", e);
+    }
     // finally {
-      // setLoading(false)
+    // setLoading(false)
     // }
-  }, [token])
+  }, [token]);
 
-  useEffect( () => {
+  useEffect(() => {
     if (!token) {
       navigate("/login");
     } else {
       startFetchTrans();
     }
-  }, [navigate, token, startFetchTrans])
+  }, [navigate, token, startFetchTrans]);
 
-  const calcTotal = transData => {
+  const calcTotal = (transData) => {
     const total_income = transData
-      .filter(each => each.category === 'Income')
-      .reduce((prev, eachTrans) => prev + parseFloat(eachTrans.amount), 0)
+      .filter((each) => each.category === "Income")
+      .reduce((prev, eachTrans) => prev + parseFloat(eachTrans.amount), 0);
 
     const total_expenses = transData
-      .filter(each => each.category === 'Expense')
-      .reduce((prev, eachTrans) => prev + parseFloat(eachTrans.amount), 0)
-    
-    setIncomeVal(total_income)
-    setExpensesVal(total_expenses)
-    setBalanceVal(total_income-total_expenses)
-  }
+      .filter((each) => each.category === "Expense")
+      .reduce((prev, eachTrans) => prev + parseFloat(eachTrans.amount), 0);
 
-  // Add Trans Form Submit Func 
-  const onAddTrans = async newTrans => {
+    setIncomeVal(total_income);
+    setExpensesVal(total_expenses);
+    setBalanceVal(total_income - total_expenses);
+  };
+
+  // Add Trans Form Submit Func
+  const onAddTrans = async (newTrans) => {
     try {
-      await addTransaction(token, newTrans)
-      startFetchTrans()
+      await addTransaction(token, newTrans);
+      startFetchTrans();
     } catch (e) {
-      console.error('Error in Adding Transaction', e)
+      console.error("Error in Adding Transaction", e);
     }
-  }
+  };
 
   // handling updated trans data
   const onUpdateTrans = async (updatedTrans) => {
@@ -82,15 +89,15 @@ const DashBoard = () => {
     }
   };
 
-  // Delete Trans Btn Func 
-  const onDelTrans = async transId => {
+  // Delete Trans Btn Func
+  const onDelTrans = async (transId) => {
     try {
-      await deleteTransaction(token, transId)
-      startFetchTrans()
+      await deleteTransaction(token, transId);
+      startFetchTrans();
     } catch (e) {
-      console.error('Error in Deleting Transaction', e)
+      console.error("Error in Deleting Transaction", e);
     }
-  }
+  };
 
   const renderBalanceCards = () => (
     <>
@@ -164,18 +171,34 @@ const DashBoard = () => {
       <p className="section-intro-para">
         Track your past expenses and stay updated with your spending history.
       </p>
-      <HistoryTable transHistoryData={transactions} onDeleteFunc={onDelTrans} onUpdateFunc={onUpdateTrans} />
+      <HistoryTable
+        transHistoryData={transactions}
+        onDeleteFunc={onDelTrans}
+        onUpdateFunc={onUpdateTrans}
+      />
     </div>
   );
 
   return (
     <div className="home-container">
-      <Header  />
+      <Header />
       <main className="main-container">
         <div className="greeting-box">
-          <h1 className="greeting-head">Welcome to Expense Flow</h1>
-          <p className="greeting-para">Where you can track and manage
-            your expenses with ease!
+          <h1 className="greeting-head">
+            Welcome &nbsp;
+            {userName
+              ? userName
+                  .trim()
+                  .split("   ")
+                  .map(
+                    (each) =>
+                      each[0].toUpperCase() + each.slice(1).toLowerCase()
+                  )
+                  .join(" ")
+              : "U"}
+          </h1>
+          <p className="greeting-para">
+            Track and manage your expenses with ease on Expense Flow!
           </p>
         </div>
 

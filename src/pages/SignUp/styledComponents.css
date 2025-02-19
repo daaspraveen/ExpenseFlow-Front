@@ -165,12 +165,12 @@
 .auth-form-button:hover {
     box-shadow: 0 0 5px 2px #fff;
     transform: scale(1.02);
-    background-color: #0000ff;
+    border-radius: 0;
     opacity: 1;
 }
 
 .error-msg {
-    color: red;
+    color: rgb(168, 0, 0);
     font-size: 12px;
     width: 100%;
     text-align: center;

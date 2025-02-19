@@ -1,10 +1,8 @@
 import React from 'react'
 
 const ExpenseFlowContext = React.createContext({
-    userDetails: null,
-    setUserDetails: {},
-    userData: null,
-    setUserData: {},
+    userName:'',
+    setUserName:{},
 })
 
 export default ExpenseFlowContext

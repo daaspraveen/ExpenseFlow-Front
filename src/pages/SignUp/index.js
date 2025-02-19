@@ -20,6 +20,7 @@ const SignUp = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [showPassword, toggleShowPassword] = useState(false);
   const [signUpSuccess, setSignUpSuccess] = useState(false);
+  const [isSigning, setIsSigning] = useState(false);
 
   const handleFormInputs = (e) => {
     updateFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,6 +31,7 @@ const SignUp = () => {
     // console.log('in submit')
     const allGiven = Object.values(formData).every((element) => element.length > 0);
     if (allGiven) {
+      setIsSigning(prevState => !prevState)
       try {
         const result = await signup(formData.username, formData.email, formData.password); // Call the API helper function
         if (result) {
@@ -39,6 +41,7 @@ const SignUp = () => {
         // console.log(error.message)
         setErrorMsg(error.message);
         setSignUpSuccess(false);
+        setIsSigning(prevState => !prevState)
       }
     } else {
       setErrorMsg("*Enter Details");
@@ -73,6 +76,7 @@ const SignUp = () => {
                     className="form-input"
                     placeholder="Enter Username"
                     onChange={handleFormInputs}
+                    disabled={isSigning}
                     value={formData.username}
                     required
                   />
@@ -89,6 +93,7 @@ const SignUp = () => {
                     className="form-input"
                     placeholder="Enter Email"
                     onChange={handleFormInputs}
+                    disabled={isSigning}
                     value={formData.email}
                     required
                   />
@@ -106,6 +111,7 @@ const SignUp = () => {
                     placeholder="Enter Password"
                     onChange={handleFormInputs}
                     value={formData.password}
+                    disabled={isSigning}
                     required
                   />
                   <button type="button" onClick={doToggleShowPass} className="show-pass-btn">
@@ -113,7 +119,12 @@ const SignUp = () => {
                   </button>
                 </div>
               </div>
-              <input type="submit" className="auth-form-button" value="Sign Up" />
+              <input
+                type="submit"
+                className="auth-form-button"
+                value={isSigning ? "Signing Up ..." : "Sign Up"}
+                disabled={isSigning}
+              />
               <p className="error-msg">{errorMsg}</p>
             </form>
             <p className="had-account-para">
