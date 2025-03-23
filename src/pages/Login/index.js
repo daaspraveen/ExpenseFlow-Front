@@ -59,6 +59,7 @@ const Login = () => {
       } catch (e) {
         setIsLoading(false);
         setErrorMsg(e.message);
+        console.log("errorMsg", e.message, e)
       }
     } else {
       setErrorMsg("*Enter Details");

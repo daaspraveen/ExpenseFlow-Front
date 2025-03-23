@@ -14,6 +14,7 @@ export const signup = async (username, email, password) => {
     // console.log("User Registered:", response.data);
     return response.data;
   } catch (error) {
+    console.log('ERROR IN LOGIN')
     console.error("Error during signup:", error.response ? error.response.data : error.message);
     throw new Error(error.response ? error.response.data : error.message);
   }
@@ -26,10 +27,12 @@ export const login = async (email, password) => {
       email,
       password,
     });
-    // console.log("Resp:", response.data);
+    console.log("Resp:", response.data);
     return response.data;
   } catch (error) {
-    console.error("Error during login:", error.response ? error.response.data : error.message);
+    console.log("ERRORS: ", error.response ? error.response.error : error.message)
+    console.log("============")
+    console.error("Error during login:", error.response ? error.response.error : error.message);
     throw new Error(error.response ? error.response.data : error.message);
   }
 }
