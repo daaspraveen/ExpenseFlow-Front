@@ -27,13 +27,13 @@ export const login = async (email, password) => {
       email,
       password,
     });
-    console.log("Resp:", response.data);
+    // console.log("Resp:", response.data);
     return response.data;
   } catch (error) {
-    console.log("ERRORS: ", error.response ? error.response.error : error.message)
-    console.log("============")
-    console.error("Error during login:", error.response ? error.response.error : error.message);
-    throw new Error(error.response ? error.response.data : error.message);
+    // console.log("ERRORS: ", error.response.data.error)
+    // console.log("============")
+    console.error("Error during login:", error.response ? error.response.data.error : error.message);
+    throw new Error(error.response ? error.response.data.error : error.message);
   }
 }
 
