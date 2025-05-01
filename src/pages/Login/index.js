@@ -14,8 +14,8 @@ const Login = () => {
   const {setUserName}= useContext(ExpenseFlowContext)
 
   const [formData, updateFormData] = useState({
-    email: "",
-    password: "",
+    email: "rahul",
+    password: "rahul@2021",
   });
   const [errorMsg, setErrorMsg] = useState("");
   const [showPassword, toggleShowPassword] = useState(false);
